@@ -54,7 +54,7 @@ textarea {
 button {
     background-color: #1da1f2;
     color: #fff;
-    border: none;
+    border: black;
     border-radius: 5px;
     padding: 10px 20px;
     font-size: 16px;

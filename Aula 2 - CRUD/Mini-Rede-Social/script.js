@@ -18,3 +18,56 @@ let posts = [
         date: "12/10/2023 12:00:00"
     }
 ];
+window.onload = function(){
+    mostrarPost();
+    document.querySelector("#postForm").addEventListener("submit",addPost)
+}
+
+//criar
+function addPost(infosDoEvento){
+
+    infosDoEvento.preventDefault();
+    const textoPost = document.querySelector("#postText").value;
+    const categoriaPost = document.querySelector("#postCategory").value;
+    const imagemPost = document.querySelector("#postImage").value;
+    const dataPost = new Date().toLocaleDateString();
+
+    const novoPost = {
+        text: textoPost,
+        image: imagemPost,
+        category: categoriaPost,
+        date: dataPost,
+    }
+
+    posts.unshift(novoPost);
+
+    mostrarPost()
+
+}
+
+function mostrarPost(){
+    const listaPosts = document.querySelector("#postList")
+    listaPosts.innerHTML = ""
+
+    posts.forEach(pegaItem => {
+        const cardPost = document.createElement("div")
+        cardPost.classList.add("card")
+
+        cardPost.innerHTML = `
+        <h2>${pegaItem.text}</h2>
+        <img src="${pegaItem.image}"/>
+        <p>data e hora${pegaItem.date}</p>
+        <p>categoria${pegaItem.category }</p>
+        <button>Compartilhar</button>
+        <button>Denunciar</button>
+        <button>Editar</button>
+        <button>Deletar</button>
+        <button>❤️</button>
+        `
+        //add tweet
+        listaPosts.append(cardPost)
+    })
+}
+function editarPost (){}
+
+function deletarPost(){}
